@@ -20,7 +20,7 @@
 <div>
     <h4 align="center">
         <a href="https://arxiv.org/abs/2504.05590" target='_blank'>[arXiv]</a> •
-        <a href="https://pan.baidu.com/s/16WZ8FcMiY4JrkwxFy2yTLA?pwd=0214" target='_blank'>[Weight]</a> •
+        <a href="https://pan.baidu.com/s/1hINu3suhWb3wWVfUWoWlnQ?pwd=0519" target='_blank'>[Weight]</a> •
         <a href="http://coa.realdehaze.top" target='_blank'>[Demo]</a> 
     </h4>
 </div>
@@ -102,7 +102,7 @@ In our experiment, we randomly select 4000 haze images from URHI training datase
 
 
 ## :hotsprings: Model Training
-Step 1. Download the pre-trained Res2Net model weight from [[BaiduPan](https://pan.baidu.com/s/16WZ8FcMiY4JrkwxFy2yTLA?pwd=0214)].
+Step 1. Download the pre-trained model weight from [[BaiduPan](https://pan.baidu.com/s/1hINu3suhWb3wWVfUWoWlnQ?pwd=0519)].
 
 Step 2. Make sure the file structure is consistent with the following:
 ```
