@@ -119,6 +119,7 @@ Step 3. Run the following script to train CoA from scratch:
 ```
 python Teacher.py
 python KD.py
+python EMA.py
 ```
 
 ## :taxi: Model Testing
