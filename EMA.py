@@ -4,7 +4,11 @@ import time
 import numpy as np
 import itertools
 import torch
+<<<<<<< HEAD
+from CoA.CLIP import clip
+=======
 import clip
+>>>>>>> b0f38e7fe77292f9bcb01f9e4a7df925126ff6ed
 import torch.nn.functional as F
 from torch import optim, nn
 from torch.backends import cudnn
@@ -234,6 +238,22 @@ if __name__ == "__main__":
     embedding_prompt.requires_grad = False
     tokenized_prompts = torch.cat([clip.tokenize(p) for p in [" ".join(["X"] * 16)]])
     text_features = text_encoder(embedding_prompt, tokenized_prompts)
+<<<<<<< HEAD
+    # --- debug: print and log clip prompt/text_features summary (non-intrusive) ---
+    try:
+        print(f"[CLIP-INIT] tokenized_prompts shape={tuple(tokenized_prompts.shape)}")
+        print(f"[CLIP-INIT] text_features shape={tuple(text_features.shape)}")
+        logp = os.path.join(opt.saved_data_dir, 'clip_prompts.txt')
+        try:
+            with open(logp, 'a') as f:
+                f.write(f"tokenized_prompts_shape={tuple(tokenized_prompts.shape)} text_features_shape={tuple(text_features.shape)}\n")
+        except Exception:
+            # best-effort logging, ignore errors
+            pass
+    except Exception:
+        pass
+=======
+>>>>>>> b0f38e7fe77292f9bcb01f9e4a7df925126ff6ed
     clip_model.eval()
     res_model.eval()
 

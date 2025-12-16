@@ -172,6 +172,39 @@ def set_seed_torch(seed=2018):
 
 
 if __name__ == "__main__":
+<<<<<<< HEAD
+    opt.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    print(f"Using device: {opt.device}")
+
+    # 确保所有保存目录存在
+    os.makedirs(opt.saved_model_dir, exist_ok=True)
+    os.makedirs(opt.saved_data_dir, exist_ok=True)
+    
+    # 打印确认路径
+    print(f"模型保存路径: {os.path.abspath(opt.saved_model_dir)}")
+    print(f"数据保存路径: {os.path.abspath(opt.saved_data_dir)}")
+    
+    # 检查目录是否可写
+    try:
+        test_file = os.path.join(opt.saved_model_dir, "test.txt")
+        with open(test_file, 'w') as f:
+            f.write("test")
+        os.remove(test_file)
+    except Exception as e:
+        print(f"目录写入测试失败: {e}")
+        raise
+
+    
+    set_seed_torch(2024)
+
+    train_dir_1 = './dataset/Haze4K/train'
+    train_set_1 = RESIDE_Dataset(train_dir_1, True, 256, '.png')
+
+    test_dir = './dataset/Haze4K/test'
+    test_set = TestDataset(os.path.join(test_dir, 'hazy'), os.path.join(test_dir, 'clear'))
+    
+    loader_train_1 = DataLoader(dataset=train_set_1, batch_size=24, shuffle=True, num_workers=8)#batch_size表示每个GPU的batch_size
+=======
 
     set_seed_torch(2024)
 
@@ -182,6 +215,7 @@ if __name__ == "__main__":
     test_set = TestDataset(os.path.join(test_dir, 'hazy'), os.path.join(test_dir, 'clear'))
 
     loader_train_1 = DataLoader(dataset=train_set_1, batch_size=24, shuffle=True, num_workers=8)
+>>>>>>> b0f38e7fe77292f9bcb01f9e4a7df925126ff6ed
     loader_test = DataLoader(dataset=test_set, batch_size=1, shuffle=False, num_workers=1)
 
     teacher_net = Teacher()
@@ -206,7 +240,12 @@ if __name__ == "__main__":
     criterion.append(FA().to(opt.device))
     criterion.append(nn.L1Loss().to(opt.device))
     criterion.append(SSIM().to(opt.device))
+<<<<<<< HEAD
+    # 源代码 criterion.append(ContrastLoss(ablation=False))
+    criterion.append(ContrastLoss(ablation=False).to(opt.device))  # 这是关键修改
+=======
     criterion.append(ContrastLoss(ablation=False))
+>>>>>>> b0f38e7fe77292f9bcb01f9e4a7df925126ff6ed
 
     optimizer = optim.Adam(params=filter(lambda x: x.requires_grad, student_net.parameters()), lr=opt.start_lr,
                            betas=(0.9, 0.999),
